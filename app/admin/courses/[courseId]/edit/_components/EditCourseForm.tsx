@@ -10,7 +10,7 @@ import {
   courseStatus,
 } from "@/lib/zodSchemas";
 import { Loader2, PlusIcon, SparkleIcon } from "lucide-react";
-import { useForm } from "react-hook-form";
+import { useForm, type Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -54,14 +54,14 @@ export function EditCourseForm({ data }: iAppProps) {
       title: data.title,
       description: data.description,
       fileKey: data.fileKey,
-      price: data.price,
-      duration: data.duration,
+      price: Number(data.price),
+      duration: Number(data.duration),
       level: data.level,
       category: data.category as CourseSchemaType["category"],
       status: data.status,
       slug: data.slug,
       smallDescription: data.smallDescription,
-    },
+    } as CourseSchemaType,
   });
 
   // 2. Define a submit handler.
